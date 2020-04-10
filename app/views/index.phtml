@@ -27,7 +27,7 @@
 							    Admin
 						    </a>
 						    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							    <a class="dropdown-item" href="<?= $this->url->get('admin') ?>">home</a>
+							    <a class="dropdown-item" href="<?= $this->url->get('admin') ?>">Home</a>
 							    <a class="dropdown-item" href="<?= $this->url->get('admin/news') ?>">news</a>
 							    <a class="dropdown-item" href="<?= $this->url->get('admin/users') ?>">users</a>
 						    </div>
@@ -42,10 +42,29 @@
 	    </nav>
         <div class="container">
 	        <p>
-	            <?php $this->flash->output() ?>
+		        <?php $this->flash->output() ?>
 	        </p>
 
-            <?php echo $this->getContent(); ?>
+	        <?php if ($this->session->has('userId')): ?>
+	            <?php $route = $this->router->getControllerName() ."/". $this->router->getActionName(); ?>
+		        <div class="row">
+			        <div class="col-4">
+				        <div class="list-group">
+					        <a href="<?= $this->url->get('admin') ?>" class="list-group-item list-group-item-action <?= 'admin/' == $route ? 'active' : ''; ?>">
+						        Admin
+					        </a>
+					        <a href="<?= $this->url->get('admin/news') ?>" class="list-group-item list-group-item-action <?= 'admin/news' == $route ? 'active' : ''; ?>">News</a>
+					        <a href="<?= $this->url->get('admin/users') ?>" class="list-group-item list-group-item-action <?= 'admin/users' == $route ? 'active' : ''; ?>">Users</a>
+					        <a href="<?= $this->url->get('admin/logout') ?>" class="list-group-item list-group-item-action">Exit</a>
+				        </div>
+			        </div>
+			        <div class="col-8">
+				        <?php echo $this->getContent(); ?>
+			        </div>
+		        </div>
+			<?php else: ?>
+	            <?php echo $this->getContent(); ?>
+	        <?php endif; ?>
         </div>
         <!-- jQuery first, then Popper.js, and then Bootstrap's JavaScript -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
