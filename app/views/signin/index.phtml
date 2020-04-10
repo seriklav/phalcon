@@ -1,0 +1,27 @@
+<?php
+$form = new SigninForm();
+?>
+<h2>Login</h2>
+
+
+<?= $this->tag->form("signin/index"); ?>
+	<div class="form-group">
+		<label for="email">Email address</label>
+		<?php echo $form->render('email', [
+			'class' => 'form-control',
+		]); ?>
+		<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+	</div>
+
+	<div class="form-group">
+		<label for="password">Password</label>
+		<?php echo $form->render('password', [
+			'class' => 'form-control',
+		]); ?>
+		<small id="passwordlHelp" class="form-text text-muted">We'll never share your password with anyone else.</small>
+	</div>
+
+	<?php echo $form->render('csrf'); ?>
+
+	<?php echo $form->render('Login'); ?>
+</form>

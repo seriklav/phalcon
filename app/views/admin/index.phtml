@@ -1,0 +1,20 @@
+<div class="page-header">
+	<h1>Hi User</h1>
+</div>
+
+<div class="row">
+	<div class="col-4">
+		<?= Elements::get ?>
+		<div class="list-group">
+			<a href="<?= $this->url->get('admin') ?>" class="list-group-item list-group-item-action active">
+				home
+			</a>
+			<a href="<?= $this->url->get('admin/news') ?>" class="list-group-item list-group-item-action">News</a>
+			<a href="<?= $this->url->get('admin/users') ?>" class="list-group-item list-group-item-action">Users</a>
+			<a href="<?= $this->url->get('admin/exit') ?>" class="list-group-item list-group-item-action">Exit</a>
+		</div>
+	</div>
+	<div class="col-8">
+
+	</div>
+</div>
