@@ -24,15 +24,14 @@ class SigninController extends Controller
 				]
 			]);
 
-			if (false === $user) {
-				$this->flashSession->error("wrong user / password");
 
-				return $this->view->pick("signin");
-			} else {
+			if ($user) {
 				$sessions->set("userId", $user->id);
-			}
 
-			return $this->response->redirect('admin');
+				return $this->response->redirect('admin');
+			} else {
+				$this->flash->error("wrong user / password");
+			}
 		}
 	}
 
