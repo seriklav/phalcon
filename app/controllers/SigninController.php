@@ -18,7 +18,7 @@ class SigninController extends Controller
 
 			$user = Users::findFirst([
 				"conditions" => "email = ?0 AND password = ?1",
-				"bind" == [
+				"bind" => [
 					0 => $email,
 					1 => $this->security->hash($password)
 				]
