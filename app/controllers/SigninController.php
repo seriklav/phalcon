@@ -17,18 +17,21 @@ class SigninController extends Controller
 			$email = $this->request->getPost("email");
 
 			$user = Users::findFirst([
-				"conditions" => "email = ?0 AND password = ?1",
+				"conditions" => "email = ?0",
 				"bind" => [
-					0 => $email,
-					1 => $this->security->hash($password)
+					0 => $email
 				]
 			]);
 
 
 			if ($user) {
-				$sessions->set("userId", $user->id);
+				if ($this->security->checkHash($password, $user->password)) {
+					$sessions->set("userId", $user->id);
 
-				return $this->response->redirect('admin');
+					return $this->response->redirect('admin');
+				} else {
+					$this->flash->error("wrong user / password");
+				}
 			} else {
 				$this->flash->error("wrong user / password");
 			}
